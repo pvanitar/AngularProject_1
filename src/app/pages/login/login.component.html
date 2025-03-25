@@ -1,0 +1,39 @@
+<div class="parent">
+	<div class="main">  	
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="signup">
+				<form [formGroup]="signup" (ngSubmit)="onSignUp()">
+					<label for="chk" aria-hidden="true">Sign up</label>
+					<input type="text" formControlName="UserName" placeholder="User Name" required>
+					<h6 *ngIf="signup.controls['UserName'].invalid && signup.controls['UserName'].touched" class="error-message">
+						<small *ngIf="signup.controls['UserName'].hasError('required')">User Name is required.</small>
+					</h6>
+					<input type="email" formControlName="EmailId" placeholder="Email" required>
+					<h6 *ngIf="signup.controls['EmailId'].invalid && signup.controls['EmailId'].touched" class="error-message">
+						<small *ngIf="signup.controls['EmailId'].hasError('required')">Email is required.</small>
+						<small *ngIf="signup.controls['EmailId'].hasError('email')">Please enter a valid email.</small>
+					</h6>
+                    <input type="text" formControlName="Mobile" placeholder="Mobile" required>
+					<h6 *ngIf="signup.controls['Mobile'].invalid && signup.controls['Mobile'].touched" class="error-message">
+						<small *ngIf="signup.controls['Mobile'].hasError('required')">Mobile number is required.</small>
+					</h6>
+					<input type="password" formControlName="Password" placeholder="Password" required>
+					<h6 *ngIf="signup.controls['Password'].invalid && signup.controls['Password'].touched" class="error-message">
+						<small *ngIf="signup.controls['Password'].hasError('required')">Password is required.</small>
+						<small *ngIf="signup.controls['Password'].hasError('minlength')">Password must be at least 6 characters.</small>
+					</h6>
+					<button type="submit" [disabled]="!signup.valid">Sign up</button>
+				</form>
+			</div>
+
+			<div class="login">
+				<form>
+					<label for="chk" aria-hidden="true">Login</label>
+					<input type="email" name="EmailId" [(ngModel)]="loginObj.EmailId" placeholder="Email" required>
+					<input type="password" name="Password"  [(ngModel)]="loginObj.Password" placeholder="Password" required>
+					<button (click)="onLogin()">Login</button>
+				</form>
+			</div>
+	</div>
+</div>
