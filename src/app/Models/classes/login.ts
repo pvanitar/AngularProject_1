@@ -21,8 +21,3 @@ export class SignUp{
         this.Password=''
     }
 }
-
-export interface LoginResponse {
-    message: string;
-}
-

@@ -1,0 +1,81 @@
+.parent {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Jost', sans-serif;
+    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+  }
+  
+  .main {
+    width: 80%;
+    max-width: 1000px;
+    background: #fff;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 5px 20px 50px #000;
+    padding: 30px;
+  }
+  
+  .device {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .device-title {
+    color: #573b8a;
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .device-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .device-table th, .device-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+  
+  .device-table th {
+    background-color: #573b8a;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .device-table tr:nth-child(even) {
+    background-color: #f4f4f4;
+  }
+  
+  .device-table tr:hover {
+    background-color: #ddd;
+  }
+  
+  .device-table td {
+    color: #333;
+    font-size: 1em;
+  }
+  
+  .device-table td:nth-child(7) {
+    color: #573b8a;
+    font-weight: bold;
+  }
+  
+  /* Adding some responsiveness for mobile screens */
+  @media (max-width: 768px) {
+    .device-table th, .device-table td {
+      padding: 8px;
+      font-size: 0.9em;
+    }
+  
+    .device-table {
+      margin: 0 10px;
+    }
+  }
+  

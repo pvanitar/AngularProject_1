@@ -35,5 +35,8 @@
 					<button (click)="onLogin()">Login</button>
 				</form>
 			</div>
+			<div *ngIf="message" class="message-box" [ngClass]="message.type">
+				{{ message.text }}
+			  </div>
 	</div>
 </div>

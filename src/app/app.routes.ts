@@ -3,6 +3,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { Component } from '@angular/core';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { UserComponent } from './pages/user/user.component';
+import { DeviceComponent } from './pages/device/device.component';
 
 export const routes: Routes = [
 
@@ -22,6 +24,14 @@ export const routes: Routes = [
             {
                 path:'dashboard',
                 component:DashboardComponent
+            },
+            {
+                path:'user',
+                component:UserComponent
+            },
+            {
+                path:'device',
+                component:DeviceComponent
             }
         ]
     }

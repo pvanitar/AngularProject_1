@@ -1,0 +1,34 @@
+<div class="parent">
+    <div class="main">
+      <div class="device">
+        <h2 class="device-title">Device List</h2>
+        <table class="device-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Device Name</th>
+              <th>IPAddress</th>
+              <th>DeviceGroup</th>
+              <th>ConnectionType</th>
+              <th>Port</th>
+              <th>Price</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let device of deviceList">
+              <td>{{ device.id }}</td>
+              <td>{{ device.DeviceName }}</td>
+              <td>{{ device.IPAddress }}</td>
+              <td>{{ device.DeviceGroup }}</td>
+              <td>{{ device.ConnectionType }}</td>
+              <td>{{ device.Port }}</td>
+              <td>{{ device.Price }}</td>
+              <td>{{ device.Status ? 'Active' : 'Inactive' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

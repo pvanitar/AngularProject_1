@@ -1,32 +1,9 @@
 <div class="parent">
-    <div class="main">
-      <div class="dashboard">
-        <h2 class="dashboard-title">User List</h2>
-        <table class="user-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>User Name</th>
-              <th>Email</th>
-              <th>Mobile</th>
-              <th>Age</th>
-              <th>Salary</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let user of userList">
-              <td>{{ user.id }}</td>
-              <td>{{ user.userName }}</td>
-              <td>{{ user.emailId }}</td>
-              <td>{{ user.mobile }}</td>
-              <td>{{ user.age }}</td>
-              <td>{{ user.salary }}</td>
-              <td>{{ user.status ? 'Active' : 'Inactive' }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  <div class="main">
+    <div class="dashboard">
+      <h2 class="dashboard-title"></h2>
+      <canvas id="userChart"></canvas>
+      <canvas id="deviceChart"></canvas>
     </div>
   </div>
-  
+</div>

@@ -1,81 +1,90 @@
+/* Prevent scrolling on the entire page */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Ensure body and html take up full height */
+  overflow: hidden; /* Prevent any scrolling */
+}
+
 .parent {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-family: 'Jost', sans-serif;
-    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
-  }
-  
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Jost', sans-serif;
+  background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+  height: 100%; /* Ensure parent takes full height of viewport */
+  overflow: hidden; /* Prevent any overflow from the parent */
+}
+
+/* Main container styling */
+.main {
+  width: 80%;
+  max-width: 1200px; /* Adjust the max-width */
+  background: #fff;
+  overflow: hidden; /* Ensure no overflow inside the main container */
+  border-radius: 10px;
+  box-shadow: 5px 20px 50px #000;
+  padding: 30px;
+}
+
+/* Dashboard container styling */
+.dashboard {
+  display: flex; /* Flexbox to align the charts horizontally */
+  justify-content: space-between; /* Space the charts out equally */
+  gap: 30px; /* Adds space between the two charts */
+  flex-wrap: wrap; /* Wrap the charts if they can't fit on one line */
+}
+
+/* Title of the dashboard */
+.dashboard-title {
+  color: #573b8a;
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%; /* Ensure the title spans the width of the parent container */
+}
+
+/* Chart styling */
+canvas {
+  width: 48% !important; /* Ensure each canvas takes up to 48% of the width, leaving room for a gap */
+  height: 400px !important; /* Make sure both charts have the same height */
+  margin-top: 20px;
+  display: block; /* Ensures that the canvas is treated as a block-level element */
+  border: 2px solid #ddd; /* Optional: Add a border around the canvas for better visibility */
+}
+
+/* Specific styling for the user chart */
+#userChart {
+  height: 400px; /* Ensures the height of the user chart */
+}
+
+/* Specific styling for the device chart */
+#deviceChart {
+  height: 400px; /* Ensures the height of the device chart */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
   .main {
-    width: 80%;
-    max-width: 1000px;
-    background: #fff;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 5px 20px 50px #000;
-    padding: 30px;
+    width: 90%; /* Adjust width for smaller screens */
   }
-  
+
   .dashboard {
-    text-align: center;
-    padding: 20px;
+    flex-direction: column; /* Stack the charts vertically on smaller screens */
+    gap: 30px; /* Add more space between charts on small screens */
   }
-  
-  .dashboard-title {
-    color: #573b8a;
-    font-size: 2em;
-    font-weight: bold;
-    margin-bottom: 20px;
+
+  canvas {
+    height: 300px !important; /* Reduce height of the canvas on smaller screens */
+    width: 100% !important; /* Ensure canvas takes up full width on smaller screens */
   }
-  
-  .user-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+
+  /* Adjust layout on small screens */
+  #deviceChart {
+    height: 250px; /* Reduce height of the pie chart on smaller screens */
   }
-  
-  .user-table th, .user-table td {
-    padding: 12px;
-    text-align: center;
-    border: 1px solid #ddd;
-  }
-  
-  .user-table th {
-    background-color: #573b8a;
-    color: #fff;
-    font-weight: bold;
-  }
-  
-  .user-table tr:nth-child(even) {
-    background-color: #f4f4f4;
-  }
-  
-  .user-table tr:hover {
-    background-color: #ddd;
-  }
-  
-  .user-table td {
-    color: #333;
-    font-size: 1em;
-  }
-  
-  .user-table td:nth-child(7) {
-    color: #573b8a;
-    font-weight: bold;
-  }
-  
-  /* Adding some responsiveness for mobile screens */
-  @media (max-width: 768px) {
-    .user-table th, .user-table td {
-      padding: 8px;
-      font-size: 0.9em;
-    }
-  
-    .user-table {
-      margin: 0 10px;
-    }
-  }
-  
+}

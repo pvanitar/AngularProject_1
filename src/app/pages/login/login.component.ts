@@ -30,6 +30,8 @@ export class LoginComponent {
     Password: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
 
+  message: { text: string, type: 'success' | 'error' |'failure'} | null = null;
+
   onSignUp() {
     debugger;
     if (this.signup.valid) {
@@ -45,17 +47,20 @@ export class LoginComponent {
       ).subscribe(
         (response) => {
           if (response.message === "User created successfully") {
+            this.showMessage(response.message, 'success');
             this.router.navigateByUrl('login');
           } else {
+            this.showMessage(response.message, 'failure');
             this.router.navigateByUrl('login');
           }
         },
         (error) => {
+          this.showMessage("Internal server error", 'error');
           this.router.navigateByUrl('login');
         }
       );
     } else {
-      console.log('Form is invalid!');
+      this.showMessage('Form is invalid!','error');
     }
   }
 
@@ -68,12 +73,15 @@ export class LoginComponent {
       (response) => {
         if (response.message === "Login successful") {
           localStorage.setItem('token', response.token);
+          this.showMessage(response.message, 'success');
           this.router.navigateByUrl('dashboard');
         } else {
+          this.showMessage(response.message, 'failure');
           this.router.navigateByUrl('login');
         }
       },
       (error) => {
+        this.showMessage("Invalid Credentials", 'error');
         this.router.navigateByUrl('login');
       }
     );
@@ -87,5 +95,9 @@ export class LoginComponent {
       console.error(`Backend returned code ${error.status}, body was: `, error.error);
     }
     return throwError(() => new Error('Something went wrong; please try again later.'));
+  }
+
+  showMessage(message: string, type: 'success' | 'error'| 'failure') {
+    this.message = { text: message, type };
   }
 }
