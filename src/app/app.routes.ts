@@ -31,13 +31,15 @@ export const routes: Routes = [
             },
             {
                 path:'user',
-                component:UserComponent,
-                canActivate:[authGuard]
+                //component:UserComponent,
+                canActivate:[authGuard],
+                loadComponent:()=>import('./pages/user/user.component').then((c=>c.UserComponent))
             },
             {
                 path:'device',
-                component:DeviceComponent,
-                canActivate:[authGuard]
+                //component:DeviceComponent,
+                canActivate:[authGuard],
+                loadComponent:()=>import('./pages/device/device.component').then((c=>c.DeviceComponent))
             }
         ]
     }
