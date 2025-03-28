@@ -5,6 +5,8 @@ import { Component } from '@angular/core';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UserComponent } from './pages/user/user.component';
 import { DeviceComponent } from './pages/device/device.component';
+import { childAuthGuard } from './Service/child-auth.guard';
+import { authGuard } from './Service/auth.guard';
 
 export const routes: Routes = [
 
@@ -20,18 +22,22 @@ export const routes: Routes = [
     {
         path:'',
         component:LayoutComponent,
+        canActivateChild:[childAuthGuard],
         children:[
             {
                 path:'dashboard',
-                component:DashboardComponent
+                component:DashboardComponent,
+                canActivate:[authGuard]
             },
             {
                 path:'user',
-                component:UserComponent
+                component:UserComponent,
+                canActivate:[authGuard]
             },
             {
                 path:'device',
-                component:DeviceComponent
+                component:DeviceComponent,
+                canActivate:[authGuard]
             }
         ]
     }

@@ -1,5 +1,59 @@
 <div class="parent">
-    <div class="main">
+  <div class="main">
+    <div class="add-device-btn-container">
+      <button class="add-device-btn" (click)="openForm()">Add Device</button>
+    </div>
+
+    <!-- Device Form Modal (Popup) -->
+    <div *ngIf="isFormVisible" class="form-modal" (click)="closeForm($event)">
+      <div class="form-modal-content" (click)="$event.stopPropagation()">
+        <button class="close-btn" (click)="closeForm($event)">×</button>
+        <h2 class="form-title">{{ formTitle }}</h2>
+        <form [formGroup]="deviceForm" (ngSubmit)="onSubmit()" class="device-form">
+          <label for="DeviceName" class="form-label">Device Name</label>
+          <input id="DeviceName" type="text" formControlName="DeviceName" class="form-input" />
+          <div *ngIf="deviceForm.controls.DeviceName.invalid && deviceForm.controls.DeviceName.touched" class="error-message">
+            Device Name is required.
+          </div>
+
+          <label for="IPAddress" class="form-label">IP Address</label>
+          <input id="IPAddress" type="text" formControlName="IPAddress" class="form-input" />
+          <div *ngIf="deviceForm.controls.IPAddress.invalid && deviceForm.controls.IPAddress.touched" class="error-message">
+            IP Address is required.
+          </div>
+
+          <label for="DeviceGroup" class="form-label">Device Group</label>
+          <input id="DeviceGroup" type="text" formControlName="DeviceGroup" class="form-input" />
+          <div *ngIf="deviceForm.controls.DeviceGroup.invalid && deviceForm.controls.DeviceGroup.touched" class="error-message">
+            Device Group is required.
+          </div>
+
+          <label for="ConnectionType" class="form-label">Connection Type</label>
+          <input id="ConnectionType" type="text" formControlName="ConnectionType" class="form-input" />
+          <div *ngIf="deviceForm.controls.ConnectionType.invalid && deviceForm.controls.ConnectionType.touched" class="error-message">
+            Connection Type is required.
+          </div>
+
+          <label for="Port" class="form-label">Port</label>
+          <input id="Port" type="number" formControlName="Port" class="form-input" />
+          <div *ngIf="deviceForm.controls.Port.invalid && deviceForm.controls.Port.touched" class="error-message">
+            Port is required.
+          </div>
+
+          <label for="Price" class="form-label">Price</label>
+          <input id="Price" type="number" formControlName="Price" class="form-input" />
+          <div *ngIf="deviceForm.controls.Price.invalid && deviceForm.controls.Price.touched" class="error-message">
+            Price is required.
+          </div>
+
+          <label for="Status" class="form-label">Status</label>
+          <input id="Status" type="checkbox" formControlName="Status" class="form-checkbox" />
+
+          <button type="submit" class="submit-btn" [disabled]="!deviceForm.valid">Submit</button>
+        </form>
+      </div>
+    </div>
+
       <div class="device">
         <h2 class="device-title">Device List</h2>
         <table class="device-table">
@@ -13,6 +67,7 @@
               <th>Port</th>
               <th>Price</th>
               <th>Status</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -23,8 +78,12 @@
               <td>{{ device.DeviceGroup }}</td>
               <td>{{ device.ConnectionType }}</td>
               <td>{{ device.Port }}</td>
-              <td>{{ device.Price }}</td>
+              <td>{{ device.Price | currency:'USD' }}</td>
               <td>{{ device.Status ? 'Active' : 'Inactive' }}</td>
+              <td>
+                <button class="action-btn" (click)="editDevice(device)">Edit</button>
+                <button class="action-btn" (click)="deleteDevice(device.id)">Delete</button>
+              </td>
             </tr>
           </tbody>
         </table>

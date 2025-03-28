@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
@@ -15,7 +15,7 @@ import { ILoginResponse } from '../../Models/interfaces/ILoginResponse';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
   // Inject HttpClient
   http = inject(HttpClient);
@@ -29,6 +29,10 @@ export class LoginComponent {
     Mobile: new FormControl('', [Validators.required]),
     Password: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
+
+  ngOnInit(): void {
+    localStorage.removeItem('token');
+  }
 
   message: { text: string, type: 'success' | 'error' |'failure'} | null = null;
 
@@ -66,7 +70,7 @@ export class LoginComponent {
 
   onLogin() {
     const loginData = { EmailId: this.loginObj.EmailId, Password: this.loginObj.Password };
-
+    
     this.http.post<ILoginResponse>(`${environment.apiUrl}/api/User/login`, loginData).pipe(
       catchError(this.handleError)
     ).subscribe(

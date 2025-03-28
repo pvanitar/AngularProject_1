@@ -21,7 +21,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let user of userList">
+            <tr *ngFor="let user of getFilteredUserList()">
               <td>{{ user.id }}</td>
               <td>{{ user.userName }}</td>
               <td>{{ user.emailId }}</td>
@@ -36,7 +36,7 @@
                 </select>
               </td>
               <td>
-                <button (click)="toggleEditStatus(user)">
+                <button class="action-btn" (click)="toggleEditStatus(user)">
                   {{ isEditing(user.id) ? 'Save' : 'Edit' }}
                 </button>
               </td>
